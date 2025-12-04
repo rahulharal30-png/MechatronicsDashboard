@@ -1,76 +1,108 @@
-/* assets/style.css — POWER BI ENTERPRISE THEME */
-@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+/* assets/style.css — MODERN ENTERPRISE THEME v3 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* 1. GLOBAL CANVAS */
+/* 1. GLOBAL CANVAS & TYPOGRAPHY */
 .stApp {
-    background-color: #eaeaea; /* Light gray background like Power BI Service */
-    font-family: 'Segoe UI', sans-serif;
+    background-color: #f3f4f6; /* Softer, cooler gray (Tailwind Slate-100) */
+    font-family: 'Inter', 'Segoe UI', sans-serif; /* Modern, clean font stack */
 }
 
-/* 2. REMOVE WHITESPACE */
+h1, h2, h3 {
+    color: #111827; /* Near black for headings */
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+/* 2. REMOVE WHITESPACE & PADDING FIXES */
 .block-container {
-    padding-top: 1rem !important;
-    padding-bottom: 2rem !important;
-    max-width: 100% !important; /* Use full width */
+    padding-top: 1.5rem !important;
+    padding-bottom: 3rem !important;
+    max-width: 100% !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
 }
 
-/* Hide Streamlit Elements */
+/* Hide Default Streamlit Elements */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
 
-/* 3. CONTENT CARDS (White Tiles) */
+/* 3. CONTENT CARDS (The "Tile" Look) */
 .card-container {
     background-color: #ffffff;
-    border-radius: 4px; /* Sharper corners like BI */
-    padding: 15px 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    border: 1px solid #d1d5db; /* Subtle border */
-    margin-bottom: 15px;
-    height: 100%; /* Force height consistency */
+    border-radius: 10px; /* Slightly rounder */
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
 }
 
 /* 4. HEADERS WITHIN CARDS */
 .chart-title {
     font-size: 14px;
     font-weight: 700;
-    color: #374151;
+    color: #4b5563;
     text-transform: uppercase;
-    margin-bottom: 10px;
-    border-left: 4px solid #2563eb; /* Accent Line */
-    padding-left: 8px;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chart-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background-color: #3b82f6; /* Primary Blue */
+    margin-right: 10px;
+    border-radius: 2px;
 }
 
 /* 5. HERO KPI CARDS */
 .kpi-card {
     background-color: #ffffff;
-    border-radius: 4px;
-    padding: 15px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    border-bottom: 3px solid #2563eb; /* Bottom accent */
-    text-align: center;
-    height: 100px;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border-left: 5px solid #3b82f6;
+    height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-left-width: 8px; /* Thicker accent on hover */
 }
 
 .kpi-label {
-    font-size: 12px;
+    font-size: 13px;
     color: #6b7280;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .kpi-value {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 36px;
+    font-weight: 800;
     color: #111827;
+    line-height: 1;
+    font-feature-settings: "tnum"; /* Tabular numbers alignment */
 }
 
-/* 6. SIDEBAR */
+/* 6. SIDEBAR STYLING */
 [data-testid="stSidebar"] {
     background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
@@ -80,5 +112,87 @@ header {visibility: hidden;}
 button[kind="primary"] {
     background-color: #2563eb !important;
     border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+}
+
+button[kind="primary"]:hover {
+    background-color: #1d4ed8 !important;
+}
+
+/* 8. DATAFRAME & TABLE FIXES */
+[data-testid="stDataFrame"] {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+[data-testid="stDataFrame"] th {
+    font-weight: 600 !important;
+    color: #374151 !important;
+    background-color: #f3f4f6 !important;
+    border-bottom: 2px solid #e5e7eb !important;
+}
+
+/* 9. CUSTOM WIDGET STYLING (Inputs, Selects) */
+div[data-baseweb="select"] > div, 
+div[data-baseweb="input"] > div {
+    background-color: #ffffff;
+    border-color: #d1d5db;
+    border-radius: 6px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+div[data-baseweb="select"]:hover > div, 
+div[data-baseweb="input"]:hover > div {
+    border-color: #3b82f6;
+}
+
+div[data-baseweb="select"] > div:focus-within, 
+div[data-baseweb="input"] > div:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); /* Blue glow ring */
+}
+
+/* 10. SCROLLBAR (Webkit) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
     border-radius: 4px;
 }
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; 
+}
+
+/* 11. ENTRANCE ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 10px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.card-container, .kpi-card {
+    animation-name: fadeInUp;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+/* Stagger animations slightly */
+.card-container:nth-child(1) { animation-delay: 0.05s; }
+.card-container:nth-child(2) { animation-delay: 0.1s; }
+.card-container:nth-child(3) { animation-delay: 0.15s; }
